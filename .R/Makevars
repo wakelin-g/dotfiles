@@ -1,0 +1,15 @@
+CC=/opt/homebrew/opt/gcc@13/bin/gcc-13 -fopenmp -std=gnu17
+CC17=/opt/homebrew/opt/gcc@13/bin/gcc-13 -fopenmp -std=gnu17
+CXX=/opt/homebrew/opt/gcc@13/bin/g++-13 -fopenmp -std=gnu++17
+
+CFLAGS=-g -O3 -pipe -march=native
+CXXFLAGS=-g -O3 -pipe -march=native
+CXX1XFLAGS=-g -O3 -pipe -march=native
+CXX11FLAGS=-g -O3 -pipe -march=native
+CXX14FLAGS=-g -O3 -pipe -march=native
+CXX17FLAGS=-g -O3 -pipe -march=native
+FLAGS=-Wall -O3
+FFLAGS=-O3 -g0 -pipe
+FCFLAGS=-O3 -g0 -pipe
+
+PKG_CPPFLAGS=-DHAVE_WORKING_LOG1P -I../inst/include

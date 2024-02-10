@@ -1,0 +1,6 @@
+require("config.options")
+require("config.map")
+require("config.autocmds")
+require("config.utils")
+require("config.lazy")
+-- vim.cmd([[colorscheme tokyonight-storm]])

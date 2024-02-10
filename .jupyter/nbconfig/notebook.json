@@ -1,0 +1,17 @@
+{
+  "load_extensions": {
+    "toc2/main": true,
+    "code_prettify/autopep8": false,
+    "varInspector/main": false,
+    "execute_time/ExecuteTime": true,
+    "hide_input_all/main": true,
+    "livemdpreview/livemdpreview": true,
+    "zenmode/main": true,
+    "toggle_all_line_numbers/main": true,
+    "gist_it/main": true,
+    "collapsible_headings/main": true
+  },
+  "toc2": {
+    "sideBar": false
+  }
+}

@@ -1,0 +1,6 @@
+# HSTS 1.0 Known Hosts database for GNU Wget.
+# Edit at your own risk.
+# <hostname>	<port>	<incl. subdomains>	<created>	<max-age>
+gateway.ipfs.io	0	1	1707078724	31536000
+github.com	0	1	1706724781	31536000
+codeload.github.com	0	0	1706724781	31536000
