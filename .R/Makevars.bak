@@ -12,4 +12,4 @@ FLAGS=-Wall -O3
 FFLAGS=-O3 -g0 -pipe
 FCFLAGS=-O3 -g0 -pipe
 
-PKG_CPPFLAGS=-DHAVE_WORKING_LOG1P -I../inst/include
+# PKG_CPPFLAGS=-DHAVE_WORKING_LOG1P -I../inst/include

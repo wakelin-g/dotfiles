@@ -4,10 +4,12 @@ local M = {
     cmd = { "Telescope" },
     dependencies = {
         "nvim-lua/plenary.nvim",
-        {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
+        {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "make",
+        },
         "debugloop/telescope-undo.nvim",
         "nvim-telescope/telescope-live-grep-args.nvim",
-        "nvim-telescope/telescope-file-browser.nvim",
         "nvim-telescope/telescope-media-files.nvim",
         "nvim-telescope/telescope-symbols.nvim",
         "nvim-telescope/telescope-bibtex.nvim",
@@ -20,12 +22,10 @@ function M.init()
 
     require("telescope").load_extension("fzf")
     require("telescope").load_extension("live_grep_args")
-    -- require("telescope").load_extension("notify")
     require("telescope").load_extension("undo")
     require("telescope").load_extension("media_files")
-    require("telescope").load_extension("file_browser")
     require("telescope").load_extension("bibtex")
-    -- require("telescope").load_extension("zk")
+    require("telescope").load_extension("zk")
     map("n", "<leader>u", "<cmd>Telescope undo<CR>", { silent = true, desc = "telescope: open undo float"})
     map("n", "<leader>cc", "<cmd>Telescope bibtex<CR>", { silent = true, desc = "telescope: insert bibtex ref"})
     map("n", "<leader>ff", "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", { silent = true, desc = "telescope: find"})
@@ -36,7 +36,6 @@ function M.init()
     map("n", "<leader>fh", "<cmd>Telescope oldfiles<CR>", { silent = true, desc = "telescope: search files by history"})
     map("n", "<leader>fm", "<cmd>Telescope media_files<CR>", { silent = true, desc = "telescope: media files"})
     map("n", "<leader>fz", "<cmd>Telescope zk notes<CR>", { silent = true, desc = "telescope: search notes"})
-    map("n", "<leader>qw", "<cmd>Telescope file_browser<CR>", { silent = true, desc = "telescope: open file browser"})
 end
 
 M.opts = {
@@ -49,15 +48,15 @@ M.opts = {
         path_display = { "absolute" },
         file_ignore_patterns = { ".git/", ".cache", "%.class", "%.pdf", "%.mkv", "%.mp4", "%.zip" },
         vimgrep_arguments = { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--trim" },
-        layout_config = {
-            horizontal = {
-                preview_width = 0.5,
-                height = 100,
-                width = 100,
-                preview_cutoff = 100,
-                prompt_position = "top",
-            },
-        },
+        -- layout_config = {
+        --     horizontal = {
+        --         preview_width = 0.5,
+        --         height = 100,
+        --         width = 100,
+        --         preview_cutoff = 100,
+        --         prompt_position = "top",
+        --     },
+        -- },
     },
     pickers = {
         keymaps = {
@@ -81,10 +80,6 @@ M.opts = {
             side_by_side = true,
         },
         bibtex = {},
-        file_browser = {
-            theme = "ivy",
-            hijack_netrw = true,
-        },
         media_files = {
             filetypes = {
                 "png",

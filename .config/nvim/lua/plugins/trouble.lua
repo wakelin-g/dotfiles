@@ -1,6 +1,12 @@
 return {
     {
         "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+            position = "right",
+            width = 50,
+            icons = true,
+        },
         config = function()
             require("trouble").setup({icons = false})
             vim.keymap.set("n", "<leader>tt", function()

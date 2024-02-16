@@ -14,16 +14,26 @@ return {
         },
     },
     {
-        "numToStr/Comment.nvim",
-        opts = {},
-    },
-    {
         "nvim-lualine/lualine.nvim",
+        event = "VeryLazy",
         dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
         config = function()
-            require("lualine").setup({
-                theme = "tokyonight",
-            })
+            require("lualine").setup({})
         end,
+    },
+    {
+        "hedyhli/outline.nvim",
+        config = function()
+            vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+            require("outline").setup({})
+        end,
+    },
+    {
+        "akinsho/bufferline.nvim",
+        event = "VeryLazy",
+        keys = {
+            { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+            { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+        },
     }
 }

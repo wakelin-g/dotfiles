@@ -20,10 +20,4 @@ return {
             map("v", "<leader>zm", "<cmd>ZkMatch<CR>", { silent = true, desc = "zk: match under cursor" })
         end,
     },
-    {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end,
-    },
 }

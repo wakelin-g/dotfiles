@@ -39,7 +39,6 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"
 # export LDFLAGS="$LDFLAGS -Wl,-rpath,/usr/local/opt/libomp/lib -L/usr/local/opt/libomp/lib -lomp"
 
 alias r="radian"
-alias f="fzf"
 alias n="ranger"
 alias b="bat"
 alias t="eza --tree"
@@ -122,6 +121,11 @@ rangercd() {
 alias ranger="rangercd"
 if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
 
+# fzf
+function f() {
+    file=$(fzf) && $EDITOR "$file"
+}
+
 # quickloof file w/ bat
 function bf() {
     bat "$(fzf)"
@@ -139,13 +143,33 @@ function rgf() {
 		--preview-window="70%:wrap"
 	)" &&
 	echo "opening $file" &&
-	open "$file"
+	$EDITOR "$file"
 }
 test -e /Users/griffen/.iterm2_shell_integration.zsh && source /Users/griffen/.iterm2_shell_integration.zsh || true
 
 # activate conda environment
 function a() {
-    mamba activate "$(mamba info --envs | gawk '!/^#/' | fzf  | gawk '{print $1}')"
+    local choice=$(
+        mamba env list |
+        sed 's/\*/ /;1,2d' |
+        gxargs -I {} bash -c 'name_path=( {} );py_version=( $(${name_path[1]}/bin/python --version) );echo ${name_path[0]} ${py_version[1]} ${name_path[1]}' |
+        column -t |
+        fzf --layout=reverse \
+        --info=inline \
+        --border=rounded \
+        --height=40 \
+        --preview-window="right:30%" \
+        --preview-label=" conda tree leaves " \
+        --preview=$'conda tree -p {3} leaves | perl -F\'[^\\w-_]\' -lae \'print for grep /./, @F;\' | sort'
+    )
+    [[ -n "$choice" ]] && mamba activate $(echo "$choice" | gawk '{print $3}')
+}
+
+# fzf edit
+function fe() {
+    IFS=$'\n'
+    files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+    [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
 }
 
 # fzf cd
@@ -174,7 +198,7 @@ function fpdf() {
 }
 
 # open file
-function op() {
+function fo() {
     open "$(fd -I -a -t f -H "${1:-.}" | fzf +m --exact)"
 }
 
@@ -183,8 +207,52 @@ function ap() {
     open -a "$(find /Applications /System/Applications/ /System/Applications/Utilities -name '*app' -maxdepth 1 -exec basename {} .app \; | fzf --query "$1")"
 }
 
+# fkill - kill process
+function fkill() {
+    local pid
+
+    if [ "$UID" != "0" ]; then
+        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+    else
+        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    fi
+
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | gxargs kill -${1:-9}
+    fi
+}
+
+# bip - Brew Install Package
+function bip() {
+    local inst=$(brew search "$@" | fzf -m)
+    if [[ $inst ]]; then
+        for prog in $(echo $inst);
+        do; brew install $prog; done
+    fi
+}
+
+# bup - Brew Update Package
+function bup() {
+    local upd=$(brew leaves | fzf -m)
+    if [[ $upd ]]; then
+        for prog in $(echo $upd);
+        do; brew upgrade $prog; done
+    fi
+}
+
+# bcp - Brew Clean (delete) Package
+function bcp() {
+    local uninst=$(brew leaves | fzf -m)
+    if [[ $uninst ]]; then
+        for prog in $(echo $uninst);
+        do; brew uninstall $prog; done
+    fi
+}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+##########################################################
 
 # sensible date and time display format
 function ti() {
@@ -210,9 +278,4 @@ function ipy() {
 
 function gpath() {
     greadlink -f "${1}" | pbcopy
-}
-
-function vv {
-    select config in lazyvim kickstart nvchad astrovim lunarvim
-    do NVIM_APPNAME=nvim-$config nvim; break; done
 }

@@ -132,14 +132,6 @@ return {
         }
     },
     {
-        'kylechui/nvim-surround',
-        version = '*',
-        event = 'VeryLazy',
-        config = function()
-            require('nvim-surround').setup({})
-        end,
-    },
-    {
         "NvChad/nvterm",
         config = function()
             require("nvterm").setup({
@@ -149,10 +141,10 @@ return {
                     type_opts = {
                         float = {
                             relative = 'editor',
-                            row = 0.3,
-                            col = 0.25,
-                            width = 0.5,
-                            height = 0.4,
+                            row = 0.125,
+                            col = 0.125,
+                            width = 0.75,
+                            height = 0.75,
                             border = 'single',
                         },
                         horizontal = {
@@ -185,5 +177,5 @@ return {
                 vim.keymap.set(mapping[1], mapping[2], mapping[3], opts)
             end
         end,
-    }
+    },
 }
