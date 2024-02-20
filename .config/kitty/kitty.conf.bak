@@ -1,9 +1,9 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
 font_family        FiraCode Nerd Font Mono
-bold_font          FiraCode Nerd Font Mono
+bold_font          FiraCode Nerd Font Mono:style=Bold
 italic_font        FiraCode Nerd Font Mono:style=Italic
-bold_italic_font   FiraCode Nerd Font Mono
+bold_italic_font   FiraCode Nerd Font Mono:style=Bold Italic
 font_size 20.0
 force_ltr no
 symbol_map
@@ -25,7 +25,7 @@ wheel_scroll_min_lines 1
 touch_scroll_multiplier 1.0
 
 mouse_hide_wait 3.0
-# url_color #0087bd
+url_color #0087bd
 url_style curly
 open_url_with default
 url_prefixes file ftp ftps gemini git gopher http https irc ircs kitty mailto news sftp ssh
@@ -98,7 +98,7 @@ window_padding_width 20
 placing_strategy center
 inactive_text_alpha 1.0
 
-hide_window_decorations titlebar-only
+hide_window_decorations no
 window_logo_path none
 window_logo_position bottom-right
 window_logo_alpha 0.5
@@ -219,29 +219,18 @@ map kitty_mod+f move_window_forward
 map kitty_mod+b move_window_backward
 map kitty_mod+` move_window_to_top
 map kitty_mod+r start_resizing_window
-# map kitty_mod+1 first_window
-# map kitty_mod+2 second_window
-# map kitty_mod+3 third_window
-# map kitty_mod+4 fourth_window
-# map kitty_mod+5 fifth_window
-# map kitty_mod+6 sixth_window
-# map kitty_mod+7 seventh_window
-# map kitty_mod+8 eighth_window
-# map kitty_mod+9 ninth_window
-# map kitty_mod+0 tenth_window
+map kitty_mod+1 first_window
+map kitty_mod+2 second_window
+map kitty_mod+3 third_window
+map kitty_mod+4 fourth_window
+map kitty_mod+5 fifth_window
+map kitty_mod+6 sixth_window
+map kitty_mod+7 seventh_window
+map kitty_mod+8 eighth_window
+map kitty_mod+9 ninth_window
+map kitty_mod+0 tenth_window
 map kitty_mod+f7 focus_visible_window
 map kitty_mod+f8 swap_with_window
-
-map ctrl+a>1 first_window
-map ctrl+a>2 second_window
-map ctrl+a>3 third_window
-map ctrl+a>4 fourth_window
-map ctrl+a>5 fifth_window
-map ctrl+a>6 sixth_window
-map ctrl+a>7 seventh_window
-map ctrl+a>8 eighth_window
-map ctrl+a>9 ninth_window
-map ctrl+a>0 tenth_window
 
 map kitty_mod+right next_tab
 map ctrl+tab        next_tab
@@ -284,11 +273,11 @@ map kitty_mod+a>l set_background_opacity -0.1
 map kitty_mod+a>1 set_background_opacity 1
 map kitty_mod+a>d set_background_opacity default
 map kitty_mod+delete clear_terminal reset active
-map super+q quit
+map cmd+q quit
 
 startup_session session.conf
 
 # BEGIN_KITTY_THEME
-# Rosé Pine
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME

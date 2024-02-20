@@ -25,7 +25,8 @@ function M.init()
     require("telescope").load_extension("undo")
     require("telescope").load_extension("media_files")
     require("telescope").load_extension("bibtex")
-    require("telescope").load_extension("zk")
+    -- require("telescope").load_extension("zk")
+    require("telescope").load_extension("find_template")
     map("n", "<leader>u", "<cmd>Telescope undo<CR>", { silent = true, desc = "telescope: open undo float"})
     map("n", "<leader>cc", "<cmd>Telescope bibtex<CR>", { silent = true, desc = "telescope: insert bibtex ref"})
     map("n", "<leader>ff", "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", { silent = true, desc = "telescope: find"})
@@ -36,6 +37,7 @@ function M.init()
     map("n", "<leader>fh", "<cmd>Telescope oldfiles<CR>", { silent = true, desc = "telescope: search files by history"})
     map("n", "<leader>fm", "<cmd>Telescope media_files<CR>", { silent = true, desc = "telescope: media files"})
     map("n", "<leader>fz", "<cmd>Telescope zk notes<CR>", { silent = true, desc = "telescope: search notes"})
+    map("n", "<leader>ft", "<cmd>Telescope find_template name=templatename<CR>", { silent = true, desc = "telescope: search templates"})
 end
 
 M.opts = {

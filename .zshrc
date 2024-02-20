@@ -22,6 +22,7 @@ export EZA_COLORS='da=1;34:gm=1;34'
 export BAT_THEME="tokyonight_storm"
 export DBUS_SESSION_BUS_ADDRESS="unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"
 
+
 # export XCBASE="$(xcrun --show-sdk-path)"
 # export C_INCLUDE_PATH=$XCBASE/usr/include
 # export CPLUS_INCLUDE_PATH=$XCBASE/usr/include
@@ -279,3 +280,6 @@ function ipy() {
 function gpath() {
     greadlink -f "${1}" | pbcopy
 }
+if command -v zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi

@@ -13,7 +13,6 @@ return {
         "nvim-tree/nvim-tree.lua",
         opts = {
             auto_reload_on_write = true,
-            -- create_in_closed_folder = true, -- deprecated
             disable_netrw = true,
             hijack_cursor = true,
             hijack_netrw = true,
@@ -153,7 +152,7 @@ return {
                         },
                         vertical = {
                             location = 'rightbelow',
-                            split_ratio = .5,
+                            split_ratio = .3,
                         },
                     },
                 },
@@ -178,4 +177,26 @@ return {
             end
         end,
     },
+    {
+        "windwp/nvim-autopairs",
+        dependencies = {"hrsh7th/nvim-cmp"},
+        config = function()
+            require("nvim-autopairs").setup({})
+            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+            local cmp = require("cmp")
+            cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+        end,
+        event = "InsertEnter",
+    },
+    {
+        "nvimdev/template.nvim",
+        cmd = { "Template", "TemProject" },
+        config = function()
+            require("template").setup({
+                temp_dir = "~/.config/nvim/template/",
+                author = "Griffen Wakelin",
+                email = "wakelin@dal.ca",
+            })
+        end,
+    }
 }

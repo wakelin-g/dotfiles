@@ -14,17 +14,9 @@ return {
         end,
     },
     {
-        "echasnovski/mini.pairs",
-        version = "*",
-        config = function()
-            require("mini.pairs").setup({})
-        end,
-    },
-    {
         "echasnovski/mini.indentscope",
         version = false, -- wait till new 0.7.0 release to put it back on semver
         opts = {
-            -- symbol = "▏",
             symbol = "│",
             options = { try_as_border = true },
         },

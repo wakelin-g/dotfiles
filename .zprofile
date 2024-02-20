@@ -14,3 +14,6 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export MANPATH="/opt/local/share/man:$MANPATH"
 # Finished adapting your MANPATH environment variable for use with MacPorts.
 
+
+# Created by `pipx` on 2024-02-16 01:04:03
+export PATH="$PATH:/Users/griffen/Library/Python/3.11/bin"

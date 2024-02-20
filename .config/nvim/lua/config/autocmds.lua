@@ -30,21 +30,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end,
 })
 
--- keymap for .cpp file
-vim.api.nvim_create_autocmd("BufEnter", {
-    pattern = { "*.cpp", "*.cc" },
-    callback = function()
-        vim.keymap.set(
-            "n",
-            "<Leader>e",
-            ":terminal ./a.out<CR>",
-            { silent = true }
-        )
-        -- vim.keymap.set("n", "<Leader>e", ":!./sfml-app<CR>",
-        --    { silent = true })
-    end,
-})
-
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = { "*.md" },
     callback = function()
