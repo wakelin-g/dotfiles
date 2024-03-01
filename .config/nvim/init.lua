@@ -1,5 +1,8 @@
-require("config.options")
-require("config.map")
-require("config.autocmds")
-require("config.utils")
-require("config.lazy")
+require("core.options")
+require("core.map")
+require("core.autocmds")
+require("core.servers")
+require("core.lazy")
+require("core.globals")
+
+pcall(require, "user")

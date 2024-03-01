@@ -15,7 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = "plugins"
 require("lazy").setup(plugins, {
 	dev = {
-		path = "~/pkgs",
+		path = "~/.config/plugs/",
+        fallback = false,
 	},
     ui = {
         border = "single",

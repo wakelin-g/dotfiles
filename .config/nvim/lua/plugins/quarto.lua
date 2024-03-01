@@ -40,14 +40,14 @@ return {
     {
         "benlubas/molten-nvim",
         lazy = "VeryLazy",
-        ft = { "qmd", "quarto", "py", "python" },
+        ft = { "qmd", "quarto", "python" },
         version = "^1.0.0",
         build = ":UpdateRemotePlugins",
         init = function()
             vim.g.molten_output_win_max_height = 12
             vim.g.molten_use_border_highlights = true
             vim.g.molten_virt_text_output = true
-            vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>")
+            vim.keymap.set("n", ",mi", ":MoltenInit<CR>")
         end,
     },
 }

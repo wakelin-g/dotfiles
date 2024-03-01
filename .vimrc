@@ -6,17 +6,18 @@ au FocusGained,BufEnter * silent! checktime
 
 let mapleader=" "
 nmap <leader>w :w!<cr>
+nmap <leader>q :q<cr>
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
-set so=7
-set wildmenu
+set so=7     " set scroll-off to 7 (buffer scrolls when cursor is 7 from top/bottom)
+set wildmenu " command-line completion
 set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
-set ruler
-set number
-set cmdheight=1
-set hid
+set ruler " shows `<row>,<col>\t\t<percent_file>` in bottom right (redundant if lightline)
+set number " shows line number in column to left of code
+set cmdheight=2 " change height of bottom cmd bar
+set hid " does not unload buffers when they are abandoned
 set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
+set whichwrap+=<,>,h,l " allows moving to next/prev line when using h/l at start/end of line
 set ignorecase
 set smartcase
 set hlsearch
@@ -29,30 +30,14 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-if has("gui_macvim")
-    autocmd GUIEnter * set vb t_vb=
-endif
-
 set foldcolumn=1
-
 syntax enable
 set regexpengine=0
-
-if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
-
 set encoding=utf8
 set ffs=unix,dos,mac
-
 set nobackup
 set nowb
 set noswapfile
-
 set expandtab
 set smarttab
 set shiftwidth=4
@@ -82,9 +67,16 @@ set laststatus=2
 call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdtree'
     Plug 'rose-pine/vim'
+    Plug 'itchyny/lightline.vim'
+    Plug 'tpope/vim-commentary'
+    Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
-colorscheme rosepine
+" PLUGIN-SPECIFIC COMMANDS -----------------------------------
+nnoremap <C-n> :NERDTreeToggle<CR>
+filetype plugin indent on
+let g:lightline = { 'colorscheme': 'rosepine' }
+colorscheme rosepine_moon
 set background=dark
 
 " USE ag TO SEARCH IF POSSIBLE -------------------------------
