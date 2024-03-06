@@ -19,7 +19,6 @@ vim.keymap.set("n", "<Down>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Left>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Right>", "<Nop>", { noremap = true, silent = true })
 
-vim.keymap.set("i", "<C-u>", "<C-G>u<C-U>", { noremap = true, desc = "edit: delete previous block" })
 vim.keymap.set("i", "<C-b>", "<Left>", { noremap = true, desc = "edit: move cursor to left" })
 vim.keymap.set("i", "<C-a>", "<ESC>^i", { noremap = true, desc = "edit: move cursor to line start" })
 vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>", { noremap = true, silent = true, desc = "edit: save file" })

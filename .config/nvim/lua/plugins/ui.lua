@@ -83,13 +83,12 @@ return {
 	},
 	{
 		"akinsho/bufferline.nvim",
-		dev = true,
+		dev = false,
 		name = "bufferline.nvim",
 		event = "BufEnter",
-		-- branch = "main",
 		keys = {
-			{ "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-			{ "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+			{ "<S-h>", "<cmd>bprev<cr>", desc = "Prev buffer" },
+			{ "<S-l>", "<cmd>bnext<cr>", desc = "Next buffer" },
 		},
 		config = function()
 			require("bufferline").setup({
@@ -102,7 +101,7 @@ return {
 					show_close_icon = false,
 					show_buffer_close_icons = false,
 					show_tab_indicators = true,
-					color_icons = false,
+					color_icons = true,
 					separator_style = "thin",
 					always_show_bufferline = true,
 				},
@@ -154,13 +153,26 @@ return {
 					return v.hl_group
 				end, vim.tbl_values(require("bufferline.config").highlights))
 			)
+			vim.cmd("TransparentEnable")
 		end,
 	},
 	{
 		"mawkler/modicator.nvim",
+		enabled = true,
 		config = function()
 			require("modicator").setup({
 				show_warnings = false,
+				highlights = {
+					defaults = {
+						bold = true,
+						italic = true,
+					},
+				},
+				integration = {
+					lualine = {
+						enabled = true,
+					},
+				},
 			})
 		end,
 	},
@@ -170,5 +182,26 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		opts = { signs = false },
+	},
+	{
+		"nvimdev/lspsaga.nvim",
+		event = "LspAttach",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("lspsaga").setup({
+				symbol_in_winbar = {
+					enable = false,
+				},
+				lightbulb = {
+					enable = false,
+				},
+			})
+		end,
+	},
+	{
+		"brenoprata10/nvim-highlight-colors",
 	},
 }

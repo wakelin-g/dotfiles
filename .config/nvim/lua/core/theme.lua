@@ -9,6 +9,6 @@ local M = {}
 --  melange
 --  nordic
 
-M.theme = "tokyonight"
+M.theme = "rose-pine"
 
 return M

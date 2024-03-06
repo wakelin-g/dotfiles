@@ -23,19 +23,19 @@ return {
 					local map = function(keys, func, desc)
 						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
-					map("K", vim.lsp.buf.hover, "hover documentation")
+					map("K", ":Lspsaga hover_doc<cr>", "hover documentation")
 					map("<C-k>", vim.lsp.buf.signature_help, "signature help")
-					map("gD", vim.lsp.buf.declaration, "goto declaration")
-					map("gd", require("telescope.builtin").lsp_definitions, "goto definition")
+					map("gD", ":Lspsaga peek_type_definition<cr>", "goto declaration")
+					map("gd", ":Lspsaga peek_definition<cr>", "goto definition")
 					map("gr", require("telescope.builtin").lsp_references, "goto references")
 					map("gI", require("telescope.builtin").lsp_implementations, "goto implementation")
 					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "type definition")
 					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "document symbols")
 					map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "workspace symbols")
-					map("<leader>rn", vim.lsp.buf.rename, "rename")
-					map("<leader>ca", vim.lsp.buf.code_action, "code actions")
-					map("[d", vim.diagnostic.goto_prev, "diag goto prev")
-					map("]d", vim.diagnostic.goto_next, "diag goto next")
+					map("<leader>rn", ":Lspsaga rename<cr>", "rename")
+					map("<leader>ca", ":Lspsaga code_action<cr>", "code actions")
+					map("[d", ":Lspsaga diagnostic_jump_prev<cr>", "diag goto prev")
+					map("]d", ":Lspsaga diagnostic_jump_next<cr>", "diag goto next")
 					map("<leader>e", vim.diagnostic.open_float, "show diagnostic error messages")
 					map("<leader>q", vim.diagnostic.setloclist, "open diagnostic quickfix list")
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -57,7 +57,9 @@ return {
 
 			local servers = require("core.servers")
 
-			require("mason").setup()
+			require("mason").setup({
+				log_level = vim.log.levels.DEBUG,
+			})
 
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
@@ -97,6 +99,7 @@ return {
 				markdown = { "prettier" },
 				python = { "isort", "black" },
 				cpp = { "clang_format" },
+				c = { "clang_format" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
@@ -214,10 +217,13 @@ return {
 				completion = {
 					completeopt = "menu,menuone,noinsert,noselect",
 				},
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
+				view = {
+					entries = { name = "custom", selection_order = "near_cursor" },
 				},
+				-- window = {
+				-- 	completion = cmp.config.window.bordered(),
+				-- 	documentation = cmp.config.window.bordered(),
+				-- },
 				experimental = {
 					ghost_text = true,
 				},

@@ -2,6 +2,8 @@ local opt = vim.opt
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.g.python_host_prog = "/Users/griffen/mambaforge/envs/nvim/bin/python"
 vim.g.python3_host_prog = "/Users/griffen/mambaforge/envs/nvim/bin/python3"
 
@@ -57,7 +59,7 @@ opt.pumheight = 15
 opt.redrawtime = 1500
 opt.relativenumber = true
 opt.ruler = true
-opt.scrolloff = 7
+opt.scrolloff = 5
 opt.sessionoptions = "buffers,curdir,help,tabpages,winsize"
 opt.shada = "!,'300,<50,@100,s10,h"
 opt.shiftround = true

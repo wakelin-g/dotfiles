@@ -4,6 +4,7 @@ return {
 	{
 		"rose-pine/neovim",
 		enabled = theme == "rose-pine",
+		variant = "moon",
 		lazy = false,
 		priority = 1000,
 		name = "rose-pine",
@@ -14,7 +15,7 @@ return {
 					transparency = true,
 				},
 			})
-			vim.cmd("colorscheme rose-pine")
+			vim.cmd("colorscheme rose-pine-moon")
 		end,
 	},
 	{
@@ -23,10 +24,10 @@ return {
 		lazy = false,
 		priority = 1000,
 		name = "tokyonight",
-		config = function()
-			require("tokyonight").setup({
+		opts = function()
+			return {
 				style = "storm",
-				transparent = true,
+				transparent = vim.g.transparent_enabled,
 				terminal_colors = true,
 				styles = {
 					comments = { italic = true },
@@ -36,11 +37,13 @@ return {
 					sidebars = "dark", -- choose from ["dark", "transparent", "normal"]
 					floats = "dark", -- choose from ["dark", "transparent", "normal"]
 				},
-				sidebars = { "qf", "help" },
+				sidebars = { "qf", "help", "vista_kind", "terminal", "spectre_panel", "Outline", "startuptime" },
 				hide_inactive_statusline = false,
 				dim_inactive = false,
 				lualine_bold = false,
-			})
+			}
+		end,
+		config = function()
 			vim.cmd("colorscheme tokyonight")
 		end,
 	},

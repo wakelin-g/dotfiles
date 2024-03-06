@@ -116,7 +116,7 @@ return {
 				sort_reversed = true,
 				open_notes_in = "current",
 				ui = {
-					enable = false,
+					enable = true,
 					update_debounce = 200,
 					checkboxes = {
 						[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
