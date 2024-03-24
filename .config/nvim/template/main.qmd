@@ -1,0 +1,33 @@
+---
+title: ""
+author:
+    - name: "Griffen Wakelin"
+      id: "gw"
+      orcid: "0000-0001-9339-5387"
+      email: "wakelin@dal.ca"
+      affiliations:
+        - name: "Dalhousie University"
+          city: "Halifax"
+          state: "NS"
+          url: "https://www.dal.ca"
+date: ""
+date-modified: ""
+format:
+    html:
+        toc: true
+        code-fold: false
+        code-overflow: wrap
+        code-annotations: hover
+        link-external-newwindow: true
+        link-external-icon: true
+        smooth-scroll: true
+        embed-resources: true
+        theme: united
+execute:
+    enabled: true
+    cache: true
+    warning: false
+jupyter: python3
+---
+```{python}
+```

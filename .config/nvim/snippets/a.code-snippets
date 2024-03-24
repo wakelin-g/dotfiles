@@ -1,0 +1,11 @@
+{
+    "global snippet": {
+        "prefix": "block",
+        "body": [
+            "```{python}",
+            "$1",
+            "```"
+        ],
+        "description": "Quarto code block.",
+    }
+}

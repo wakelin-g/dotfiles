@@ -1,18 +1,22 @@
 local opt = vim.opt
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = ";"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.python_host_prog = "/Users/griffen/mambaforge/envs/nvim/bin/python"
 vim.g.python3_host_prog = "/Users/griffen/mambaforge/envs/nvim/bin/python3"
+
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
 
 opt.autoindent = true
 opt.autoread = true
 opt.autowrite = false
 opt.backspace = "indent,eol,start"
 opt.backup = false
-opt.backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
+opt.backupskip =
+    "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
 opt.breakat = [[\ \   ;:,!?]]
 opt.breakindent = true
 opt.breakindentopt = "shift:2,min:20"
@@ -31,7 +35,6 @@ opt.display = "lastline"
 opt.encoding = "utf-8"
 opt.equalalways = false
 opt.errorbells = true
-opt.expandtab = true
 opt.fileformats = "unix,mac,dos"
 opt.foldenable = true
 opt.foldlevelstart = 99
@@ -63,7 +66,6 @@ opt.scrolloff = 5
 opt.sessionoptions = "buffers,curdir,help,tabpages,winsize"
 opt.shada = "!,'300,<50,@100,s10,h"
 opt.shiftround = true
-opt.shiftwidth = 4
 opt.shortmess = "aoOTIcF"
 opt.showbreak = "↳  "
 opt.showcmd = false
@@ -73,7 +75,6 @@ opt.sidescrolloff = 5
 opt.signcolumn = "yes"
 opt.smartcase = true
 opt.smarttab = true
-opt.softtabstop = 4
 opt.splitbelow = true
 opt.splitkeep = "screen"
 opt.splitright = true
@@ -81,7 +82,6 @@ opt.startofline = false
 opt.swapfile = false
 opt.switchbuf = "usetab,uselast"
 opt.synmaxcol = 2500
-opt.tabstop = 4
 opt.termguicolors = true
 opt.timeout = true
 opt.timeoutlen = 300
@@ -95,7 +95,7 @@ opt.virtualedit = "block"
 opt.visualbell = false
 opt.whichwrap = "h,l,<,>,[,],~"
 opt.wildignore =
-	".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**"
+    ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**"
 opt.wildignorecase = true
 opt.wrap = false
 opt.wrapscan = true

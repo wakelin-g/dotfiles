@@ -59,6 +59,51 @@ gui.search_case_sensitive: FALSE
 # One of: DISPLAY_FILTER, HEX_VALUE, STRING, REGEX
 gui.search_type: DISPLAY_FILTER
 
+# Geometry and maximized state of FilterDialog window.
+# Decimal integers.
+gui.geom.FilterDialog.x: 242
+gui.geom.FilterDialog.y: 179
+gui.geom.FilterDialog.width: 1008
+gui.geom.FilterDialog.height: 610
+# TRUE or FALSE (case-insensitive).
+gui.geom.FilterDialog.maximized: FALSE
+
+# Geometry and maximized state of ExpertInfoDialog window.
+# Decimal integers.
+gui.geom.ExpertInfoDialog.x: 293
+gui.geom.ExpertInfoDialog.y: 38
+gui.geom.ExpertInfoDialog.width: 907
+gui.geom.ExpertInfoDialog.height: 916
+# TRUE or FALSE (case-insensitive).
+gui.geom.ExpertInfoDialog.maximized: FALSE
+
+# Geometry and maximized state of PreferencesDialog window.
+# Decimal integers.
+gui.geom.PreferencesDialog.x: 416
+gui.geom.PreferencesDialog.y: 258
+gui.geom.PreferencesDialog.width: 774
+gui.geom.PreferencesDialog.height: 554
+# TRUE or FALSE (case-insensitive).
+gui.geom.PreferencesDialog.maximized: FALSE
+
+# Geometry and maximized state of CaptureFilePropertiesDialog window.
+# Decimal integers.
+gui.geom.CaptureFilePropertiesDialog.x: 242
+gui.geom.CaptureFilePropertiesDialog.y: 38
+gui.geom.CaptureFilePropertiesDialog.width: 1008
+gui.geom.CaptureFilePropertiesDialog.height: 916
+# TRUE or FALSE (case-insensitive).
+gui.geom.CaptureFilePropertiesDialog.maximized: FALSE
+
+# Geometry and maximized state of PacketDialog window.
+# Decimal integers.
+gui.geom.PacketDialog.x: 142
+gui.geom.PacketDialog.y: 118
+gui.geom.PacketDialog.width: 1209
+gui.geom.PacketDialog.height: 732
+# TRUE or FALSE (case-insensitive).
+gui.geom.PacketDialog.maximized: FALSE
+
 # Custom colors.
 # List of custom colors selected in Qt color picker.
 gui.custom_colors: 
