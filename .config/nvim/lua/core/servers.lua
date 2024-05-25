@@ -1,11 +1,9 @@
 local M = {
     clangd = {
-        server = {
-            cmd = {
-                "clangd",
-                "--completion-style=detailed",
-                "--header-insertion=never",
-            },
+        cmd = {
+            "clangd",
+            "--completion-style=detailed",
+            "--header-insertion=never",
         },
         on_attach = function()
             require("clangd_extensions.inlay_hints").setup_autocmd()
@@ -15,7 +13,6 @@ local M = {
     gopls = {},
     bashls = {},
     yamlls = {},
-    ["cmake-language-server"] = {},
     texlab = {},
     pylsp = {},
     -- pyright = {
@@ -31,6 +28,7 @@ local M = {
     -- 	single_file_support = true,
     -- },
     rust_analyzer = {},
+    svls = {},
     lua_ls = {
         settings = {
             Lua = {

@@ -137,6 +137,7 @@ return {
 
             require("mason-tool-installer").setup({
                 ensure_installed = ensure_installed,
+                run_on_start = false,
             })
             require("mason-lspconfig").setup({
                 handlers = {
@@ -167,7 +168,6 @@ return {
                 markdown = { "prettier" },
                 python = { "isort", "black" },
                 cpp = { "clang_format" },
-                c = { "clang_format" },
             },
             format_on_save = {
                 lsp_fallback = true,

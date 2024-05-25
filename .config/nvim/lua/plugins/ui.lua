@@ -13,66 +13,66 @@ return {
             show_basename = false,
         },
     },
-    -- {
-    --     "nvim-lualine/lualine.nvim",
-    --     event = "BufEnter",
-    --     dependencies = {
-    --         { "nvim-tree/nvim-web-devicons", opt = true },
-    --         { "lewis6991/gitsigns.nvim" },
-    --     },
-    --     config = function()
-    --         local function molten()
-    --             local kernels = require("molten.status").kernels()
-    --             if kernels == "" then
-    --                 return ""
-    --             end
-    --             return "[Molten]: " .. kernels
-    --         end
-    --         local function get_lsp()
-    --             local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-    --             local clients = vim.lsp.get_active_clients()
-    --             local msg = "[" .. "No active lsp" .. "]"
-    --             if next(clients) == nil then
-    --                 return msg
-    --             end
-    --             for _, client in ipairs(clients) do
-    --                 local filetypes = client.config.filetypes
-    --                 if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-    --                     return "[LSP]: " .. client.name
-    --                 end
-    --             end
-    --             return msg
-    --         end
-    --         require("lualine").setup({
-    --             options = {
-    --                 icons_enabled = true,
-    --                 theme = "auto",
-    --                 component_separators = { left = "", right = "|" },
-    --                 section_separators = { left = "", right = "" },
-    --                 disabled_filetypes = {
-    --                     statusline = {},
-    --                     winbar = {},
-    --                 },
-    --                 ignore_focus = {},
-    --                 always_divide_middle = true,
-    --                 globalstatus = false,
-    --                 refresh = {
-    --                     statusline = 1000,
-    --                     tabline = 1000,
-    --                     winbar = 1000,
-    --                 },
-    --             },
-    --             sections = {
-    --                 lualine_a = { "mode" },
-    --                 lualine_b = { "branch" },
-    --                 lualine_c = { molten, get_lsp },
-    --                 lualine_x = { "encoding", "fileformat", "filetype" },
-    --                 lualine_y = { "progress" },
-    --                 lualine_z = { "location" },
-    --             },
-    --         })
-    --     end,
-    -- },
+    {
+        "nvim-lualine/lualine.nvim",
+        event = "BufEnter",
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons", opt = true },
+            { "lewis6991/gitsigns.nvim" },
+        },
+        config = function()
+            local function molten()
+                local kernels = require("molten.status").kernels()
+                if kernels == "" then
+                    return ""
+                end
+                return "[Molten]: " .. kernels
+            end
+            local function get_lsp()
+                local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+                local clients = vim.lsp.get_clients()
+                local msg = "[" .. "No active lsp" .. "]"
+                if next(clients) == nil then
+                    return msg
+                end
+                for _, client in ipairs(clients) do
+                    local filetypes = client.config.filetypes
+                    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                        return "[LSP]: " .. client.name
+                    end
+                end
+                return msg
+            end
+            require("lualine").setup({
+                options = {
+                    icons_enabled = true,
+                    theme = "auto",
+                    component_separators = { left = "", right = "|" },
+                    section_separators = { left = "", right = "" },
+                    disabled_filetypes = {
+                        statusline = {},
+                        winbar = {},
+                    },
+                    ignore_focus = {},
+                    always_divide_middle = true,
+                    globalstatus = false,
+                    refresh = {
+                        statusline = 1000,
+                        tabline = 1000,
+                        winbar = 1000,
+                    },
+                },
+                sections = {
+                    lualine_a = { "mode" },
+                    lualine_b = { "branch" },
+                    lualine_c = { molten, get_lsp },
+                    lualine_x = { "encoding", "fileformat", "filetype" },
+                    lualine_y = { "progress" },
+                    lualine_z = { "location" },
+                },
+            })
+        end,
+    },
     {
         "akinsho/bufferline.nvim",
         dev = false,
@@ -97,7 +97,6 @@ return {
                     separator_style = "thin",
                     always_show_bufferline = true,
                 },
-                -- highlights = require("rose-pine.plugins.bufferline"),
             })
         end,
     },
@@ -138,6 +137,7 @@ return {
     },
     {
         "xiyaowong/transparent.nvim",
+        enabled = true,
         config = function()
             vim.g.transparent_groups = vim.list_extend(
                 vim.g.transparent_groups or {},
@@ -164,7 +164,7 @@ return {
                 },
                 integration = {
                     lualine = {
-                        enabled = false,
+                        enabled = true,
                     },
                 },
             })
@@ -181,75 +181,6 @@ return {
             "nvim-lua/plenary.nvim",
         },
         opts = { signs = false },
-    },
-    {
-        "rebelot/heirline.nvim",
-        event = "VeryLazy",
-        dependencies = {
-            { "nvim-tree/nvim-web-devicons" },
-        },
-        config = function()
-            local comp = require("lib.heirline_components")
-            local utils = require("heirline.utils")
-            require("heirline").load_colors(comp.setup_colors())
-            local aug =
-                vim.api.nvim_create_augroup("Heirline", { clear = true })
-            vim.api.nvim_create_autocmd("ColorScheme", {
-                desc = "Update heirline colors",
-                group = aug,
-                callback = function()
-                    local colors = comp.setup_colors()
-                    utils.on_colorscheme(colors)
-                end,
-            })
-            require("heirline").setup({
-                statusline = utils.insert(
-                    {
-                        static = comp.stl_static,
-                        hl = { bg = "bg" },
-                    },
-                    comp.ViMode,
-                    comp.lpad(comp.ProfileRecording),
-                    comp.lpad(comp.LSPActive),
-                    comp.lpad(comp.Diagnostics),
-                    require("statusline").left_components,
-                    { provider = "%=" },
-                    require("statusline").right_components,
-                    comp.rpad(comp.ConjoinStatus),
-                    comp.rpad(comp.ArduinoStatus),
-                    comp.rpad(comp.SessionName),
-                    comp.rpad(comp.Overseer),
-                    comp.rpad(comp.FileType),
-                    comp.Ruler
-                ),
-                winbar = nil,
-                opts = {
-                    disable_winbar_cb = function(args)
-                        local buf = args.buf
-                        local ignore_buftype = vim.tbl_contains(
-                            { "prompt", "nofile", "terminal", "quickfix" },
-                            vim.bo[buf].buftype
-                        )
-                        local filetype = vim.bo[buf].filetype
-                        local ignore_filetype = filetype == "fugitive"
-                            or filetype == "qf"
-                            or filetype:match("^git")
-                        local is_float = vim.api.nvim_win_get_config(0).relative
-                            ~= ""
-                        return ignore_buftype or ignore_filetype or is_float
-                    end,
-                },
-            })
-            vim.api.nvim_create_user_command(
-                "HeirlineResetStatusline",
-                function()
-                    vim.o.statusline =
-                        "%{%v:lua.require'heirline'.eval_statusline()%}"
-                end,
-                {}
-            )
-            -- vim.opt_local.winbar = "%{%v:lua.require'heirline'.eval_winbar()%}"
-        end,
     },
     {
         "rcarriga/nvim-notify",
@@ -352,6 +283,13 @@ return {
                 height = 0.9,
                 position = "C",
             })
+        end,
+    },
+    {
+        "MeanderingProgrammer/markdown.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            require("render-markdown").setup({})
         end,
     },
 }
