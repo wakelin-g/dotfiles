@@ -1,5 +1,5 @@
-# import = ["~/.config/alacritty/rosepine.toml"]
-import = ["~/.config/alacritty/tokyonight.toml"]
+import = ["~/.config/alacritty/rosepine.toml"]
+# import = ["~/.config/alacritty/tokyonight.toml"]
 
 [env]
 TERM = "xterm-256color"
@@ -24,8 +24,8 @@ style = "Regular"
 [window]
 title = "alacritty"
 decorations = "buttonless"
-opacity = 1
-# opacity = 0.9
+# opacity = 1
+opacity = 0.90
 blur = true
 startup_mode = "Windowed"
 
