@@ -1,9 +1,0 @@
-{
-    "enabled": true,
-    "enabledInEditors": true,
-    "cmdModeKeys": {
-        "escToCmdMode": true,
-        "shiftEscOverrideBrowser": true
-    },
-    "extraKeybindings": []
-}

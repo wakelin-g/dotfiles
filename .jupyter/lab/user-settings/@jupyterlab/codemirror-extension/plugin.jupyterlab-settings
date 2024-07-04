@@ -1,8 +1,0 @@
-{
-    "defaultConfig": {
-        "autoClosingBrackets": true,
-        "highlightActiveLine": true,
-        "highlightTrailingWhitespace": true,
-        "highlightWhitespace": true
-    }
-}
