@@ -1,10 +1,5 @@
 CompileFlags:
   Add:
-  - -I/opt/homebrew/Cellar/gcc/13.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin23/13/../../../../../../include/c++/13
-  - -I/opt/homebrew/Cellar/gcc/13.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin23/13/../../../../../../include/c++/13/aarch64-apple-darwin23
-  - -I/opt/homebrew/Cellar/gcc/13.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin23/13/../../../../../../include/c++/13/backward
-  - -I/opt/homebrew/Cellar/gcc/13.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin23/13/include
-  - -I/opt/homebrew/Cellar/gcc/13.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin23/13/include-fixed
   - -I/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include
   - -I/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/System/Library/Frameworks
   - -DLOCAL
@@ -16,6 +11,12 @@ CompileFlags:
   - -Wfloat-equal
   - -Wno-unused-const-variable
   - -Wno-sign-conversion
-  - -std=c++17
+  - -std=c11
 Index:
   Background: Skip
+---
+If:
+  PathExclude: [.*\.c, .*\.h]
+CompileFlags:
+  Add:
+  - -std=c++17
