@@ -1,6 +1,5 @@
 
 alias r="radian"
-alias n="ranger"
 alias b="bat"
 alias t="eza --tree"
 alias o="open ."
@@ -9,7 +8,6 @@ alias grep="grep --color=auto"
 alias nf="neofetch"
 alias man="batman"
 alias approve="xattr -cr"
-alias inkscape="/Applications/Inkscape.app/Contents/MacOS/inkscape"
 
 alias rls="sl"
 alias ls="eza --group-directories-first"
@@ -23,14 +21,9 @@ alias lc="ll -schanged"
 alias notes="cd /Users/griffen/knowledgebase/2_Notes/ && f"
 alias nvcd="cd ~/.config/nvim/"
 
-alias ranger="rangercd"
-
 alias clang="/opt/homebrew/opt/llvm/bin/clang"
 alias clang++="/opt/homebrew/opt/llvm/bin/clang++"
 alias lldb="/opt/homebrew/opt/llvm/bin/lldb"
 
-alias acu="arduino-cli compile && arduino-cli upload"
-
 alias obs="nvim ~/knowledgebase/2_Notes/index.md"
-alias nvim-kickstart="NVIM_APPNAME='nvim-kickstart' nvim"
 
