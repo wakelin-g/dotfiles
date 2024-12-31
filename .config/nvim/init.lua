@@ -12,6 +12,11 @@ require("core.autocmds")
 require("core.servers")
 require("core.lazy")
 require("core.globals")
+require("core.color")
+require("core.highlights")
+
+vim.o.background = "dark"
+vim.cmd("colorscheme gruvbox")
 require("lib.telescope_colors")
 
 pcall(require, "user")

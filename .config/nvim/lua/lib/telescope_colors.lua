@@ -40,6 +40,18 @@ local hlgroups = {
     TelescopePromptNormal = { fg = colors.text, bg = colors._nc },
 }
 
-for hl, col in pairs(hlgroups) do
-    vim.api.nvim_set_hl(0, hl, col)
+local highlights = {
+    TelescopeNormal = { default = true, link = "Normal" },
+    NormalFloat = { default = true },
+    Float = { default = true },
+    FloatNormal = { default = true },
+    FloatBorder = { default = true },
+}
+
+-- for hl, col in pairs(hlgroups) do
+--     vim.api.nvim_set_hl(0, hl, col)
+-- end
+
+for hl, _ in pairs(highlights) do
+    vim.api.nvim_set_hl(0, hl, { link = "WinSeparator" })
 end

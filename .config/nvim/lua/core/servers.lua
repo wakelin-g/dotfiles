@@ -10,25 +10,13 @@ local M = {
             require("clangd_extensions.inlay_hints").set_inlay_hints()
         end,
     },
-    gopls = {},
     bashls = {},
     yamlls = {},
     texlab = {},
-    pylsp = {},
-    -- pyright = {
-    -- 	settings = {
-    -- 		python = {
-    -- 			analysis = {
-    -- 				autoImportCompletions = true,
-    -- 				autoSearchPaths = true,
-    -- 				diagnosticMode = "openFilesOnly",
-    -- 			},
-    -- 		},
-    -- 	},
-    -- 	single_file_support = true,
-    -- },
+    -- pylsp = {},
+    -- pyright = {},
+    basedpyright = {},
     rust_analyzer = {},
-    svls = {},
     lua_ls = {
         settings = {
             Lua = {

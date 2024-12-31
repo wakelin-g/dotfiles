@@ -1,4 +1,4 @@
-return {
+local plugins = {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -23,9 +23,10 @@ return {
                     { clear = true }
                 ),
                 callback = function(event)
-                    local map = function(keys, func, desc)
+                    local map = function(keys, func, desc, mode)
+                        mode = mode or "n"
                         vim.keymap.set(
-                            "n",
+                            mode,
                             keys,
                             func,
                             { buffer = event.buf, desc = "LSP: " .. desc }
@@ -53,7 +54,12 @@ return {
                         "workspace symbols"
                     )
                     map("<leader>rn", vim.lsp.buf.rename, "rename")
-                    map("<leader>ca", vim.lsp.buf.code_action, "code actions")
+                    map(
+                        "<leader>ca",
+                        vim.lsp.buf.code_action,
+                        "code actions",
+                        { "n", "x" }
+                    )
                     map("[d", vim.diagnostic.goto_prev, "diag goto prev")
                     map("]d", vim.diagnostic.goto_next, "diag goto next")
                     map(
@@ -66,7 +72,6 @@ return {
                         vim.diagnostic.setloclist,
                         "open diagnostic quickfix list"
                     )
-
                     vim.keymap.set({ "n", "i", "s" }, "<C-f>", function()
                         if not require("noice.lsp").scroll(4) then
                             return "<C-f>"
@@ -89,22 +94,60 @@ return {
                         vim.lsp.get_client_by_id(event.data.client_id)
                     if
                         client
-                        and client.server_capabilities.documentHighlightProvider
+                        and client.supports_method(
+                            vim.lsp.protocol.Methods.textDocument_documentHighlight
+                        )
                     then
+                        local highlight_augroup = vim.api.nvim_create_augroup(
+                            "griffen-lsp-highlight",
+                            { clear = false }
+                        )
                         vim.api.nvim_create_autocmd(
                             { "CursorHold", "CursorHoldI" },
                             {
                                 buffer = event.buf,
+                                group = highlight_augroup,
                                 callback = vim.lsp.buf.document_highlight,
                             }
                         )
+
                         vim.api.nvim_create_autocmd(
                             { "CursorMoved", "CursorMovedI" },
                             {
                                 buffer = event.buf,
+                                group = highlight_augroup,
                                 callback = vim.lsp.buf.clear_references,
                             }
                         )
+
+                        vim.api.nvim_create_autocmd("LspDetach", {
+                            group = vim.api.nvim_create_augroup(
+                                "griffen-lsp-detach",
+                                { clear = true }
+                            ),
+                            callback = function(event2)
+                                vim.lsp.buf.clear_references()
+                                vim.api.nvim_clear_autocmds({
+                                    group = "griffen-lsp-highlight",
+                                    buffer = event2.buf,
+                                })
+                            end,
+                        })
+                    end
+
+                    if
+                        client
+                        and client.supports_method(
+                            vim.lsp.protocol.Methods.textDocument_inlayHint
+                        )
+                    then
+                        map("<leader>th", function()
+                            vim.lsp.inlay_hint.enable(
+                                not vim.lsp.inlay_hint.is_enabled({
+                                    bufnr = event.buf,
+                                })
+                            )
+                        end, "[T]oggle Inlay [H]ints")
                     end
                 end,
             })
@@ -118,26 +161,19 @@ return {
 
             local servers = require("core.servers")
 
-            require("mason").setup({
-                log_level = vim.log.levels.DEBUG,
-            })
+            require("mason").setup({})
 
             local ensure_installed = vim.tbl_keys(servers or {})
             vim.list_extend(ensure_installed, {
                 "stylua",
                 "prettier",
-                "stylua",
-                "isort",
                 "black",
-                "pylint",
                 "shfmt",
-                "luacheck",
-                "goimports",
             })
 
             require("mason-tool-installer").setup({
                 ensure_installed = ensure_installed,
-                run_on_start = false,
+                run_on_start = true,
             })
             require("mason-lspconfig").setup({
                 handlers = {
@@ -157,10 +193,21 @@ return {
                     end,
                 },
             })
+            require("lspconfig")["r_language_server"].setup({
+                cmd = { "R", "--no-echo", "-e", "languageserver::run()" },
+                filetypes = { "r", "rmd" },
+                root_dir = function(fname)
+                    return vim.fs.dirname(
+                        vim.fs.find(".git", { path = fname, upward = true })[1]
+                    ) or vim.loop.os_homedir()
+                end,
+                log_level = vim.lsp.protocol.MessageType.Warning,
+            })
         end,
     },
     {
         "stevearc/conform.nvim",
+        enabled = true,
         opts = {
             formatters_by_ft = {
                 lua = { "stylua" },
@@ -195,6 +242,16 @@ return {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
             {
+                "zbirenbaum/copilot-cmp",
+                enabled = false,
+                config = function()
+                    require("copilot_cmp").setup({
+                        suggestion = { enabled = false },
+                        panel = { enabled = false },
+                    })
+                end,
+            },
+            {
                 "hrsh7th/nvim-cmp",
                 event = { "InsertEnter", "CmdlineEnter" },
             },
@@ -213,24 +270,8 @@ return {
             "p00f/clangd_extensions.nvim",
         },
         config = function()
-            vim.api.nvim_set_hl(
-                0,
-                "CmpNormal",
-                { fg = "#fff1f3", bg = "#2c2525", bold = false, italic = false }
-            )
-            vim.api.nvim_set_hl(
-                0,
-                "CmpBorder",
-                { fg = "#fff1f3", bg = "#2c2525", bold = false, italic = false }
-            )
-            vim.api.nvim_set_hl(
-                0,
-                "CmpSelection",
-                { fg = "#fff1f3", bg = "#191515", bold = true, italic = false }
-            )
-
-            local kind_icons = require("lib.icons").kind
             local cmp = require("cmp")
+            local kind_icons = require("lib.icons").kind
             local luasnip = require("luasnip")
             luasnip.config.setup({})
             cmp.setup({
@@ -286,6 +327,7 @@ return {
                     { name = "luasnip" },
                     { name = "nvim_lsp" },
                     { name = "nvim_lua" },
+                    { name = "copilot" },
                     { name = "path" },
                     -- { name = "buffer" },
                     { name = "otter" },
@@ -357,3 +399,7 @@ return {
         end,
     },
 }
+
+return plugins
+
+-- vim: ts=2 sts=2 sw=2 et

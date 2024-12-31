@@ -1,7 +1,8 @@
-return {
+local plugins = {
     {
         "quarto-dev/quarto-nvim",
         ft = { "quarto" },
+        enabled = true,
         dependencies = {
             {
                 "jmbuhr/otter.nvim",
@@ -53,6 +54,7 @@ return {
     },
     {
         "benlubas/molten-nvim",
+        enabled = false,
         ft = { "quarto", "python" },
         dependencies = { "3rd/image.nvim" },
         version = "^1.0.0",
@@ -67,3 +69,5 @@ return {
         end,
     },
 }
+
+return plugins

@@ -1,6 +1,6 @@
 local theme = require("core.theme").theme
 
-return {
+local plugins = {
     {
         "rose-pine/neovim",
         enabled = theme == "rose-pine",
@@ -125,4 +125,9 @@ return {
             vim.cmd("colorscheme nordic")
         end,
     },
+    {
+        "gruvbox-community/gruvbox",
+    },
 }
+
+return plugins

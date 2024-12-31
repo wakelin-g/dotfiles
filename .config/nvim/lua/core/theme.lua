@@ -8,7 +8,8 @@ local M = {}
 --  nightfly
 --  melange
 --  nordic
+--  gruvbox
 
-M.theme = "rose-pine"
+M.theme = nil
 
 return M

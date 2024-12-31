@@ -1,0 +1,25 @@
+font-family = JetBrains Mono
+font-size = 20
+theme = GruvBoxDark
+selection-invert-fg-bg = true
+copy-on-select = true
+
+window-decoration = true
+window-width = 100
+window-height = 25
+window-padding-x = 7,12
+window-padding-y = 7,12
+
+macos-non-native-fullscreen = false
+macos-titlebar-style = native
+macos-titlebar-proxy-icon = visible
+macos-option-as-alt = true
+macos-window-shadow = true
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+macos-icon = custom-style
+macos-icon-frame = aluminum
+macos-icon-ghost-color = white
+macos-icon-screen-color = red
+
+auto-update = off
