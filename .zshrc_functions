@@ -72,13 +72,6 @@ function sd() {
     cd $(find * -type d | fzf)
 }
 
-# search globally including hidden
-function fda() {
-    cd "$HOME" || exit
-    dir="$(fd -a -H -t d "${1:-.}" | fzf +m)"
-    cd "$dir" || exit
-}
-
 # fkill - kill process
 function fkill() {
     local pid
@@ -98,13 +91,13 @@ function fkill() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 function ipy() {
-    if [[ -f $CONDA_PREFIX/bin/ipython ]]; then
+    if [ -f $CONDA_PREFIX/bin/ipython ] || [ -f $VIRTUAL_ENV/bin/ipython ]; then
         ipython
     else
         if [[ -z $CONDA_DEFAULT_ENV ]]; then
-            printf "conda not activated\n"
+            printf "no virtual environment activated\n"
         else
-            printf "ipython not installed in conda environment '$CONDA_DEFAULT_ENV'\n"
+            printf "ipython not installed\n"
         fi
     fi
 }

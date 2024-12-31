@@ -37,6 +37,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-sleuth'
+  Plug 'tpope/vim-surround'
   Plug 'tribela/vim-transparent'
   Plug 'Yggdroot/indentLine'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }

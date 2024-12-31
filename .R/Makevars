@@ -1,19 +1,13 @@
-XCBASE:=$(shell xcrun --show-sdk-path)
-LLVMBASE:=$(shell brew --prefix llvm)
-GCCBASE:=$(shell brew --prefix gcc)
-GETTEXT:=$(shell brew --prefix gettext)
+LDFLAGS += -L/opt/homebrew/opt/libomp/lib -lomp
 
-CC=$(LLVMBASE)/bin/clang -fopenmp
-CXX=$(LLVMBASE)/bin/clang++ -fopenmp
-CXX11=$(LLVMBASE)/bin/clang++ -fopenmp
-CXX14=$(LLVMBASE)/bin/clang++ -fopenmp
-CXX17=$(LLVMBASE)/bin/clang++ -fopenmp
-CXX1X=$(LLVMBASE)/bin/clang++ -fopenmp
+#CXX1X=/opt/homebrew/Cellar/gcc/14.2.0_1/bin/g++-14 -fopenmp
+#CXX98=/opt/homebrew/Cellar/gcc/14.2.0_1/bin/g++-14 -fopenmp
+#CXX11=/opt/homebrew/Cellar/gcc/14.2.0_1/bin/g++-14 -fopenmp
+#CXX14=/opt/homebrew/Cellar/gcc/14.2.0_1/bin/g++-14 -fopenmp
+#CXX17=/opt/homebrew/Cellar/gcc/14.2.0_1/bin/g++-14 -fopenmp
 
-CPPFLAGS += -isystem "$(LLVMBASE)/include" -isysroot "$(XCBASE)" -fopenmp
-LDFLAGS += -L"$(LLVMBASE)/lib)" -L"$(GETTEXT)/lib" --sysroot="$(XCBASE)" -lomp
-
-FC=$(GCCBASE)/bin/gfortran -fopenmp
-F77=$(GCCBASE)/bin/gfortran -fopenmp
-FLIBS=-L$(GCCBASE)/lib/gcc/13/ -lm
-MAKE=make -j8
+CXX1X=/opt/homebrew/Cellar/llvm/19.1.6/bin/clang++
+CXX98=/opt/homebrew/Cellar/llvm/19.1.6/bin/clang++
+CXX11=/opt/homebrew/Cellar/llvm/19.1.6/bin/clang++
+CXX14=/opt/homebrew/Cellar/llvm/19.1.6/bin/clang++
+CXX17=/opt/homebrew/Cellar/llvm/19.1.6/bin/clang++

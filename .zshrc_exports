@@ -18,9 +18,9 @@ export LD_LIBRARY_PATH="$(brew --prefix)/lib"
 # export TERM="alacritty"
 export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow"
 
-# might break nvim lol
-export LUA_PATH="/opt/homebrew/Cellar/luarocks/3.9.2/share/lua/5.1/?.lua;/opt/homebrew/share/lua/5.1/?.lua;/opt/homebrew/share/lua/5.1/?/init.lua;/opt/homebrew/lib/lua/5.1/?.lua;/opt/homebrew/lib/lua/5.1/?/init.lua;./?.lua;./?/init.lua;/Users/griffen/.luarocks/share/lua/5.1/?.lua;/Users/griffen/.luarocks/share/lua/5.1/?/init.lua"
-export LUA_CPATH="/opt/homebrew/lib/lua/5.1/?.so;/opt/homebrew/lib/lua/5.1/loadall.so;./?.so;/Users/griffen/.luarocks/lib/lua/5.1/?.so"
+# might break nvim lol - breaks quarto actually!
+# export LUA_PATH="/opt/homebrew/Cellar/luarocks/3.9.2/share/lua/5.1/?.lua;/opt/homebrew/share/lua/5.1/?.lua;/opt/homebrew/share/lua/5.1/?/init.lua;/opt/homebrew/lib/lua/5.1/?.lua;/opt/homebrew/lib/lua/5.1/?/init.lua;./?.lua;./?/init.lua;/Users/griffen/.luarocks/share/lua/5.1/?.lua;/Users/griffen/.luarocks/share/lua/5.1/?/init.lua"
+# export LUA_CPATH="/opt/homebrew/lib/lua/5.1/?.so;/opt/homebrew/lib/lua/5.1/loadall.so;./?.so;/Users/griffen/.luarocks/lib/lua/5.1/?.so"
 
 # --preview 'bat --color=always --line-range :500 {}'
 export FZF_DEFAULT_OPTS="
@@ -51,3 +51,4 @@ export FZF_DEFAULT_OPTS="
 # --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff
 # --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a
 
+export NGSPLOT=~/Downloads/ngsplot/ngsplot/

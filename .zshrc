@@ -1,6 +1,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/Library/TeX/texbin/latex:/Library/TeX/texbin/dvips:/opt/homebrew/bin/pstoedit
 export PATH=$PATH:/Users/griffen/bin
+export PATH=$PATH:/Users/griffen/Downloads/ngsplot/ngsplot/bin
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="gallois"
 zstyle ':omz:update' mode disabled

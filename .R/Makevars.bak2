@@ -1,0 +1,19 @@
+XCBASE:=$(shell xcrun --show-sdk-path)
+LLVMBASE:=$(shell brew --prefix llvm)
+GCCBASE:=$(shell brew --prefix gcc)
+GETTEXT:=$(shell brew --prefix gettext)
+
+CC=$(LLVMBASE)/bin/clang -fopenmp
+CXX=$(LLVMBASE)/bin/clang++ -fopenmp
+CXX11=$(LLVMBASE)/bin/clang++ -fopenmp
+CXX14=$(LLVMBASE)/bin/clang++ -fopenmp
+CXX17=$(LLVMBASE)/bin/clang++ -fopenmp
+CXX1X=$(LLVMBASE)/bin/clang++ -fopenmp
+
+CPPFLAGS += -isystem "$(LLVMBASE)/include" -isysroot "$(XCBASE)" -fopenmp
+LDFLAGS += -L"$(LLVMBASE)/lib)" -L"$(GETTEXT)/lib" --sysroot="$(XCBASE)" -lomp
+
+FC=$(GCCBASE)/bin/gfortran -fopenmp
+F77=$(GCCBASE)/bin/gfortran -fopenmp
+FLIBS=-L$(GCCBASE)/lib/gcc/13/ -lm
+MAKE=make -j8
