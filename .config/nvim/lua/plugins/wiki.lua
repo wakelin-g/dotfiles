@@ -138,6 +138,15 @@ local plugins = {
             })
         end,
     },
+    {
+        "nvim-orgmode/orgmode",
+        enabled = false,
+        event = "VeryLazy",
+        ft = { "org" },
+        config = function()
+            require("orgmode").setup({})
+        end,
+    },
 }
 
 return plugins

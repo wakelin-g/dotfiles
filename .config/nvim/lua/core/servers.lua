@@ -15,7 +15,15 @@ local M = {
     texlab = {},
     -- pylsp = {},
     -- pyright = {},
-    basedpyright = {},
+    basedpyright = {
+        settings = {
+            basedpyright = {
+                analysis = {
+                    typeCheckingMode = "standard",
+                },
+            },
+        },
+    },
     rust_analyzer = {},
     lua_ls = {
         settings = {

@@ -6,10 +6,6 @@ local plugins = {
         end,
     },
     {
-        "stevearc/vim-arduino",
-        enabled = false,
-    },
-    {
         "nvimdev/template.nvim",
         cmd = { "Template", "TemProject" },
         config = function()
@@ -22,7 +18,7 @@ local plugins = {
     },
     {
         "amitds1997/remote-nvim.nvim",
-        enabled = true,
+        enabled = IS_MACOS,
         verison = "*",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -33,7 +29,7 @@ local plugins = {
     },
     {
         "zbirenbaum/copilot.lua",
-        enabled = true,
+        enabled = IS_MACOS,
         version = "*",
         cmd = "Copilot",
         event = "InsertEnter",

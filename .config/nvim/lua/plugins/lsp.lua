@@ -169,6 +169,7 @@ local plugins = {
                 "prettier",
                 "black",
                 "shfmt",
+                "ruff",
             })
 
             require("mason-tool-installer").setup({
@@ -211,10 +212,10 @@ local plugins = {
         opts = {
             formatters_by_ft = {
                 lua = { "stylua" },
-                go = { "goimports" },
                 markdown = { "prettier" },
-                python = { "isort", "black" },
+                python = { "black", "ruff" },
                 cpp = { "clang_format" },
+                tex = { "tex_fmt" },
             },
             format_on_save = {
                 lsp_fallback = true,
@@ -229,6 +230,11 @@ local plugins = {
                     command = "/opt/homebrew/bin/clang-format",
                     inherit = true,
                     args = { "--style=file:/Users/griffen/.clang-format" },
+                },
+                tex_fmt = {
+                    command = "/Users/griffen/.cargo/bin/tex-fmt",
+                    inherit = true,
+                    args = { "-s" },
                 },
             },
         },
