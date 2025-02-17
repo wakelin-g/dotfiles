@@ -1,20 +1,20 @@
 # globus
-if type globus > /dev/null 2>&1; then
+if type globus >/dev/null 2>&1; then
     eval "$(globus --zsh-completer)"
 fi
 
 # fzf
-function f() {
+function f {
     file=$(fzf) && $EDITOR "$file"
 }
 
 # quickloof file w/ bat
-function bf() {
+function bf {
     bat "$(fzf)"
 }
 
 # ripgrepall + fzf
-function rgf() {
+function rgf {
     RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case"
     QUERY="${*:-}"
     : | fzf --ansi --disabled --query "$QUERY" \
@@ -30,32 +30,32 @@ function rgf() {
 test -e /Users/griffen/.iterm2_shell_integration.zsh && source /Users/griffen/.iterm2_shell_integration.zsh || true
 
 # activate conda environment
-function a() {
+function a {
     local choice=$(
         mamba env list |
-        sed 's/\*/ /;1,2d' |
-        gxargs -I {} bash -c 'name_path=( {} );py_version=( $(${name_path[1]}/bin/python --version) );echo ${name_path[0]} ${py_version[1]} ${name_path[1]}' |
-        column -t |
-        fzf --layout=reverse \
-        --info=inline \
-        --border=rounded \
-        --height=40 \
-        --preview-window="right:30%" \
-        --preview-label=" conda tree leaves " \
-        --preview=$'conda tree -p {3} leaves | perl -F\'[^\\w-_]\' -lae \'print for grep /./, @F;\' | sort'
+            sed 's/\*/ /;1,2d' |
+            gxargs -I {} bash -c 'name_path=( {} );py_version=( $(${name_path[1]}/bin/python --version) );echo ${name_path[0]} ${py_version[1]} ${name_path[1]}' |
+            column -t |
+            fzf --layout=reverse \
+                --info=inline \
+                --border=rounded \
+                --height=40 \
+                --preview-window="right:30%" \
+                --preview-label=" conda tree leaves " \
+                --preview=$'conda tree -p {3} leaves | perl -F\'[^\\w-_]\' -lae \'print for grep /./, @F;\' | sort'
     )
     [[ -n "$choice" ]] && mamba activate $(echo "$choice" | gawk '{print $3}')
 }
 
 # fzf edit
-function fe() {
+function fe {
     IFS=$'\n'
     files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
     [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
 }
 
 # fzf cd
-function ff() {
+function ff {
     local dir
     while true; do
         dir="$(/bin/ls -1ap | grep '/$' | grep -v '^./$' | fzf --height 90% --reverse --no-multi --preview 'pwd' --preview-window=up,1,border-none --no-info)"
@@ -68,12 +68,12 @@ function ff() {
 }
 
 # fzf cd 2
-function sd() {
+function sd {
     cd $(find * -type d | fzf)
 }
 
 # fkill - kill process
-function fkill() {
+function fkill {
     local pid
 
     if [ "$UID" != "0" ]; then
@@ -82,15 +82,14 @@ function fkill() {
         pid=$(ps -ef | sed 1d | fzf -m --preview="" | awk '{print $2}')
     fi
 
-    if [ "x$pid" != "x" ]
-    then
+    if [ "x$pid" != "x" ]; then
         echo $pid | gxargs kill -${1:-9}
     fi
 }
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-function ipy() {
+# quick ipython alias
+function ipy {
     if [ -f $CONDA_PREFIX/bin/ipython ] || [ -f $VIRTUAL_ENV/bin/ipython ]; then
         ipython
     else
@@ -100,4 +99,18 @@ function ipy() {
             printf "ipython not installed\n"
         fi
     fi
+}
+
+# source .zshrc if no arg provided else source arg
+function so {
+    if [[ -z "$1" ]]; then
+        source ~/.zshrc
+    else
+        source "$1"
+    fi
+}
+
+# refresh emacs daemon
+function emacs-refresh {
+    launchctl kickstart -kp gui/501/gnu.emacs.daemon
 }
