@@ -1,0 +1,9 @@
+{
+    "lspconfig": {
+        "lua_ls": {
+            "Lua.workspace.library": [
+                "/Users/griffen/.hammerspoon/Spoons/EmmyLua.spoon/annotations"
+            ]
+        }
+    }
+}
