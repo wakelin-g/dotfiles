@@ -19,6 +19,6 @@ source ~/.zshrc_functions
 source ~/.zshrc_exports
 source ~/.zshrc_conda
 
-if command -v zoxide > /dev/null; then
-  eval "$(zoxide init zsh)"
+if command -v zoxide >/dev/null; then
+    eval "$(zoxide init zsh)"
 fi
