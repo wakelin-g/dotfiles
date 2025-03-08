@@ -1,0 +1,5 @@
+# alt - t : /opt/homebrew/bin/alacritty
+
+cmd + ctrl - c : /opt/homebrew/bin/emacsclient -ne '(timu-func-make-capture-frame)' || yabai -m window --focus recent
+cmd + ctrl - u : /opt/homebrew/bin/emacsclient -ne '(timu-func-url-safari-capture-to-org)' || /opt/homebrew/bin/emacsclient -ne '(find-file \"~/org/webpages.org\")' || yabai -m window --focus recent
+cmd + ctrl - s : /opt/homebrew/bin/emacsclient -ne '(timu-func-safari-capture-to-org)' || /opt/homebrew/bin/emacsclient -ne '(find-file \"~/org/webpages.org\")' || yabai -m window --focus recent
