@@ -1,7 +1,6 @@
-font-family = JetBrains Mono
+font-family = IosevkaTerm Nerd Font Mono
 font-size = 20
-theme = GruvBoxDark
-selection-invert-fg-bg = true
+theme = carbonfox
 copy-on-select = true
 
 window-decoration = true
@@ -23,3 +22,5 @@ macos-icon-ghost-color = white
 macos-icon-screen-color = red
 
 auto-update = off
+
+command = tmux new-session -A -t ghostty

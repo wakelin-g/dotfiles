@@ -1,0 +1,47 @@
+# export MANPATH="/usr/local/man:$MANPATH"
+export LANG=en_US.UTF-8
+export ARCHFLAGS="-arch arm64"
+# export EDITOR="nvim"
+export EDITOR="nvim"
+export PAGER="bat"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export EZA_COLORS='da=1;34:gm=1;34'
+export BAT_THEME="tokyonight_storm"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"
+export LLVM_DIR="$(brew --prefix llvm)/lib/cmake/llvm"
+# export GLOBUS_CEDAR="8dec4129-9ab4-451d-a45f-5b4b8471f7a3"
+export GLOBUS_FIR="8dec4129-9ab4-451d-a45f-5b4b8471f7a3"
+
+export CPATH="$(brew --prefix)/include"
+export LIBRARY_PATH="$(brew --prefix)/lib"
+export LD_LIBRARY_PATH="$(brew --prefix)/lib"
+
+# export TERM="alacritty"
+export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow"
+# export TERM="xterm-ghostty"
+export TERM="xterm"
+
+# seem to need these so that org-latex-preview sizes are correct
+export LIBGS="/opt/homebrew/lib/libgs.dylib"
+
+# rpy2 needed?
+export R_HOME="/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources"
+
+# might break nvim lol - breaks quarto actually!
+# export LUA_PATH="/opt/homebrew/Cellar/luarocks/3.9.2/share/lua/5.1/?.lua;/opt/homebrew/share/lua/5.1/?.lua;/opt/homebrew/share/lua/5.1/?/init.lua;/opt/homebrew/lib/lua/5.1/?.lua;/opt/homebrew/lib/lua/5.1/?/init.lua;./?.lua;./?/init.lua;/Users/griffen/.luarocks/share/lua/5.1/?.lua;/Users/griffen/.luarocks/share/lua/5.1/?/init.lua"
+# export LUA_CPATH="/opt/homebrew/lib/lua/5.1/?.so;/opt/homebrew/lib/lua/5.1/loadall.so;./?.so;/Users/griffen/.luarocks/lib/lua/5.1/?.so"
+
+# --preview 'bat --color=always --line-range :500 {}'
+export FZF_DEFAULT_OPTS="
+--preview='([[ -f {} ]] && (bat --style=header --color=always {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+--multi
+--height=100%
+--layout=reverse
+--info=hidden
+--border=rounded
+--border-label='fzf'
+--border-label-pos=-5
+--prompt='fzf> '
+--pointer='->'
+--marker='{{'
+"

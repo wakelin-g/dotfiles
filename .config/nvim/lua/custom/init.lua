@@ -1,0 +1,8 @@
+require("custom.globals")
+require("custom.map")
+require("custom.servers")
+require("custom.options")
+require("custom.autocmds")
+require("custom.icons")
+require("custom.util")
+require("custom.lazy")

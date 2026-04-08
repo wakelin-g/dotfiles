@@ -1,0 +1,21 @@
+alias r="radian"
+alias b="bat"
+alias t="eza --tree"
+alias o="open ."
+alias grep="grep --color=auto"
+alias nf="neofetch"
+alias man="batman"
+alias approve="xattr -cr"
+
+alias rls="sl"
+alias ls="eza --group-directories-first"
+alias ll="ls -l --git"
+alias l="ll -a"
+alias lt="ll -smodified"
+alias lc="ll -schanged"
+
+alias notes="cd /Users/griffen/knowledgebase/2_Notes/ && f"
+alias nvcd="cd ~/.config/nvim/"
+
+alias obs="nvim ~/knowledgebase/2_Notes/index.md"
+alias ij="nvim /Applications/Fiji.app/macros/StartupMacros.fiji.ijm"
