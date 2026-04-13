@@ -49,7 +49,7 @@ keybind = ctrl+a>x=close_surface
 
 keybind = super+r=reload_config
 
-keybind = global:super+grave_accent=toggle_quick_terminal
+keybind = global:super+shift+grave_accent=toggle_quick_terminal
 quick-terminal-position = top
 quick-terminal-size = 20%,150px
 quick-terminal-screen = main
